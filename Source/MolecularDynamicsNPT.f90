@@ -923,6 +923,17 @@ SUBROUTINE BoxConstraint(force_box,constr_type)
     force_box(2,3) = 0.d0
     force_box(3,1) = 0.d0
     force_box(3,2) = 0.d0
+  
+  CASE(9) ! keep the box cubic
+    force_box(1,2) = 0.d0
+    force_box(1,3) = 0.d0
+    force_box(2,1) = 0.d0
+    force_box(2,3) = 0.d0
+    force_box(3,1) = 0.d0
+    force_box(3,2) = 0.d0
+    force_box(1,1) = (force_box(1,1) + force_box(2,2) + force_box(3,3))/3
+    force_box(2,2) = force_box(1,1)
+    force_box(3,3) = force_box(1,1)
     
   CASE(2) ! angle between a,b,c will be preserved
     PRINT *, 'Have not implemented yet, stop'
